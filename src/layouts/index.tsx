@@ -1,28 +1,16 @@
 import styles from './index.less';
 import { Menu, Button } from 'antd';
-import { Outlet, useModel } from 'umi';
+import { useModel } from 'umi';
 
-import {
-  AppstoreOutlined,
-  ContainerOutlined,
-  DesktopOutlined,
-  MailOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-} from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { ReactChild, useEffect, useState } from 'react';
 import { history } from 'umi';
 
 export default function IndexPage(props: { children: ReactChild }) {
   const { children } = props;
 
- const {
-    routes, setRoutes
-  }=useModel('menu')
+  const { routes, setRoutes } = useModel('menu');
 
-  console.log('children',children);
-  
   const items = [
     {
       label: '菜单一',
@@ -45,8 +33,8 @@ export default function IndexPage(props: { children: ReactChild }) {
   ];
 
   useEffect(() => {
-    setRoutes(items)
-  }, [])
+    setRoutes(items);
+  }, []);
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -55,13 +43,12 @@ export default function IndexPage(props: { children: ReactChild }) {
   };
 
   function handleClick({ item, key, keyPath, domEvent }) {
-    console.log('item, key, keyPath, domEvent', item, key, keyPath, domEvent);
     const [subPath, parentPath] = keyPath || [];
     history.push(`/${subPath}${parentPath}`);
   }
 
   return (
-    <div style={{display:'flex'}}>
+    <div style={{ display: 'flex' }}>
       <div style={{ width: 256 }}>
         <Button
           type="primary"
@@ -80,10 +67,8 @@ export default function IndexPage(props: { children: ReactChild }) {
           items={routes}
           onClick={handleClick}
         />
-        
       </div>
-      <div style={{marginTop:200,marginLeft:'200'}}>
-          {children}</div>
+      <div style={{ marginTop: 200, marginLeft: '200' }}>{children}</div>
     </div>
   );
 }

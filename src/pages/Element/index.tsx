@@ -4,8 +4,6 @@ import { useModel } from 'umi';
 
 const index = () => {
   const { routes, setRoutes } = useModel('menu');
-  console.log('element');
-
   // 1.layout
   // 2.useModel
   const [text, setText] = useState();
@@ -14,7 +12,6 @@ const index = () => {
     setText(e.target.defaultValue?.trim());
   }
   function handleStore() {
-    console.log(text);
     const routes = [
       {
         label: '菜单一',
